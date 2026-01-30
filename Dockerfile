@@ -1,13 +1,9 @@
-# Use the lightweight Nginx Alpine image
+# Use Nginx to serve the static file
 FROM nginx:alpine
 
-# Copy your HTML file to the default Nginx public directory
-# If your file is named something else, rename it to index.html or adjust below
-RUN rm -rf /usr/share/nginx/html/*
+# Copy your index.html into the default Nginx public directory
 COPY index.html /usr/share/nginx/html/index.html
 
-# Expose port 80
+# Nginx stays running in the foreground by default in this image, 
+# which prevents the CrashLoopBackOff.
 EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
