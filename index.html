@@ -3,147 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamo | Login</title>
+    <title>Odyssey | Gaming Portal</title>
     <style>
+        /* The Dynamic Color-Shifting Background */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Orbitron', sans-serif; /* Gaming font style */
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #ff0055, #7000ff, #00d2ff, #23d5ab);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 12s ease infinite;
             overflow: hidden;
         }
+
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .login-container {
+        /* Glassmorphism Container with Neon Border */
+        .login-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            width: 350px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 50px 40px;
+            width: 360px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             text-align: center;
             color: white;
-            animation: float 6s ease-in-out infinite;
+            transition: border 0.5s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        /* Title with Neon Pulse */
+        h2 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+            animation: pulse 2s infinite alternate;
         }
 
-        h2 { margin-bottom: 5px; font-weight: 300; letter-spacing: 2px; }
+        @keyframes pulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; text-shadow: 0 0 20px #7000ff, 0 0 40px #7000ff; }
+        }
 
         .input-group {
-            margin-bottom: 15px;
+            margin: 25px 0;
             text-align: left;
         }
 
         label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #23d5ab;
         }
 
         input {
             width: 100%;
             padding: 12px;
+            margin-top: 5px;
             border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
             color: white;
+            font-size: 1rem;
             outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
         }
 
         input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            border-bottom: 2px solid #00d2ff;
         }
 
-        button {
+        /* Multi-color Gaming Button */
+        .login-btn {
             width: 100%;
-            padding: 12px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 8px;
-            background: #fff;
-            color: #e73c7e;
+            padding: 15px;
+            background: white;
+            color: black;
             font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
-            text-transform: uppercase;
+            font-size: 1rem;
         }
 
-        button:hover {
-            transform: scale(1.05);
-            background: #23a6d5;
+        .login-btn:hover {
+            background: #00d2ff;
             color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00d2ff;
         }
 
-        /* Refresh button styling */
+        /* Functional Refresh Button */
         .refresh-btn {
             position: absolute;
             top: 15px;
             right: 15px;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 10px;
+            font-size: 0.6rem;
+            border-radius: 4px;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
         .refresh-btn:hover {
-            background: rgba(255,255,255,0.4);
+            background: white;
+            color: black;
         }
 
-        .footer-text {
+        .footer {
             margin-top: 20px;
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            letter-spacing: 1px;
         }
     </style>
 </head>
-
 <body>
 
-<div class="login-container">
-    <!-- Refresh Button -->
-    <button class="refresh-btn" onclick="location.reload()">Refresh</button>
-
+<div class="login-card">
+    <button type="button" class="refresh-btn" onclick="window.location.reload()">Reset System</button>
+    
     <h2>Odyssey</h2>
-    <p>Game House</p>
+    <p style="font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 30px;">GAME HOUSE PORTAL</p>
 
-    <form>
+    <form onsubmit="handleLogin(event)">
         <div class="input-group">
-            <label>Username</label>
-            <input type="text" placeholder="Enter username" required>
+            <label>Player ID</label>
+            <input type="text" id="username" placeholder="Username" required>
         </div>
 
         <div class="input-group">
-            <label>Password</label>
-            <input type="password" placeholder="••••••••" required>
+            <label>Security Key</label>
+            <input type="password" id="password" placeholder="••••••••" required>
         </div>
 
-        <button type="submit">Login Now</button>
+        <button type="submit" class="login-btn">Initialize Play</button>
     </form>
 
-    <div class="footer-text">
-        © 2026
+    <div class="footer">
+        STATUS: ONLINE | V.2.0.26
     </div>
 </div>
+
+<script>
+    function handleLogin(event) {
+        event.preventDefault();
+        const user = document.getElementById('username').value;
+        alert("Welcome, " + user + "! Redirecting to the Game House...");
+    }
+</script>
 
 </body>
 </html>
